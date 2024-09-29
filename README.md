@@ -1,6 +1,6 @@
 # MVP (Minimum Viable Product) Platform
 
-![Homepage](image-1.png)
+![Homepage](homepage.jpg)
 
 # Table of Contents
 
