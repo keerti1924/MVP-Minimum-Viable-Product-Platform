@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MVP-Homepage</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/favicon.png" rel="icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/static/assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+		    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+		
+		      <a href="/" class="logo d-flex align-items-center">
+		        <img src="/static/assets/img/logo.png" alt="logo" class="img-fluid">
+		        <!-- <h1 class="sitename">MVP</h1> -->
+		      </a>
+		
+		      <nav id="navmenu" class="navmenu">
+		        <ul>
+		          <li><a href="/" class="active">Home</a></li>
+		          <li><a href="/about">About Us</a></li>
+		          <li><a href="/contact">Contact</a></li>
+		           <!-- Check if the currentUser is logged in -->
+			        <li th:if="${currentUser == null}">
+			            <a href="/login">Login</a>
+			        </li>
+			
+			        <!-- Show logged-in user's name and logout button -->
+			        <li th:if="${currentUser != null}">
+			            <a href="/logout">Logout</a>
+			        </li>
+			
+			        <!-- User profile icon -->
+			        <li th:if="${currentUser != null}"><a href="/apparel/profile"><i class="bi bi-person me-2 border p-2 rounded-circle"></i> <span th:text="${currentUser.username}"></span></a></li>
+			    </ul>
+		        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+		      </nav>
+		
+		    </div>
+		 </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="/static/assets/img/hero-background.jpg" alt="" data-aos="fade-in">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2>Give Your Clothes a Second Life - Dispose, Donate, or Recycle</h2>
+            <p>Submit your unused or worn-out apparel for proper disposal, donation to those in need, or eco-friendly
+              recycling.</p>
+
+            <a th:if="${currentUser == null}" href="/login" class="btn-get-started">Submit Your Apparel</a>
+            <a th:if="${currentUser != null}" href="/apparel/profile" class="btn-get-started">Submit Your Apparel</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!-- /Hero Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up" style="max-width: 700px;">
+        <h2> Our Services</h2>
+        <p>At MVP, we are dedicated to promoting sustainability and social responsibility
+          through our
+          diverse range of
+          services. We provide a seamless platform for individuals and organizations to donate, recycle, or responsibly
+          dispose of apparel items. </p>
+      </div>
+      <!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6 " data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative shadow" style="height: 250px;">
+              <div class="icon">
+                <i class="bi bi-gift"></i>
+              </div>
+              <a href="service-details.html" class="stretched-link">
+                <h3>Clothing Donations</h3>
+              </a>
+              <p>We partner with local charities to ensure your unused clothes reach those in need.</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative shadow" style="height: 250px;">
+              <div class="icon">
+                <i class="bi bi-trash"></i>
+              </div>
+              <a href="service-details.html" class="stretched-link">
+                <h3>Sustainable Disposal</h3>
+              </a>
+              <p>We provide eco-friendly disposal options to reduce landfill waste and protect the environment.</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative shadow" style="height: 250px;">
+              <div class="icon">
+                <i class="bi bi-recycle"></i>
+              </div>
+              <a href="service-details.html" class="stretched-link">
+                <h3>Textile Recycling</h3>
+              </a>
+              <p>We offer recycling services for clothing items that are no longer wearable, turning them into new
+                materials.</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- /Services Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 position-relative d-flex align-items-center order-lg-last" data-aos="fade-up"
+            data-aos-delay="200">
+            <img src="/static/assets/img/about-bg.jpg" class="img-fluid flex-shrink-0" alt="">
+          </div>
+
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <h3>Who We Are</h3>
+            <h5 class="text-muted mb-4">Welcome to Eco Apparel Disposal</h5>
+            <p>
+              We are passionate about reducing textile waste and supporting those in need. Our platform connects users
+              with trusted partners who specialize in sustainable disposal, donation, and recycling of apparel. <br>By
+              facilitating easy drop-off or pick-up services, we help reduce landfill waste and promote responsible
+              fashion consumption.
+            </p>
+            <p>Our mission is to make clothing disposal eco-friendly, reduce textile waste, and ensure that no wearable
+              clothing goes unused.</p>
+
+            <a href="/about" class="about-btn px-4 p-2 mt-2 btn-get-started">Learn More About Our Impact</a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- /About Section -->
+
+    <!-- Apparel Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up" style="max-width: 700px;">
+        <h2 class="mb-2">Apparel Items</h2>
+        <h5 class="text-muted mb-3">Discover Our Apparel Items</h5>
+        <p>Welcome to our Apparel Items section, where you can find various clothing options to donate, recycle, or
+          dispose of responsibly. Your contributions can make a significant difference in the lives of others and the
+          environment. Browse our collection and choose how you want to make an impact today!</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout">
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div th:each="apparel : ${apparels}" class="col-lg-4 col-md-6 portfolio-item isotope-item">
+              <div class="portfolio-content h-100">
+                <a th:href="@{/apparel/{id}/image(id=${apparel.id})}" data-gallery="portfolio-gallery-app" class="glightbox">
+                	<img th:src="@{/apparel/{id}/image(id=${apparel.id})}" class="img-fluid" alt="Apparel" style="width:100%; height:350px;">
+                </a>
+                <div class="portfolio-info">
+				    <h4><a th:href="@{/apparel/{id}(id=${apparel.id})}" th:text="${apparel.name}"></a></h4>
+				    <p th:text="${apparel.description}"></p>
+				</div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+             <div th:if="${#lists.isEmpty(apparels)}" class="col-12">
+                <p>No Apparels found.</p>
+            </div>
+
+          </div>
+          <!-- End Portfolio Container -->
+	
+		<div class="row gy-4 mt-4 text-center">
+			<div class="col-12">
+				<a href="/apparel/all" class="about-btn px-4 py-2">Show all Apparels</a>
+			</div>
+		</div>
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- /Apparel Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <img src="/static/assets/img/call.jpg" alt="">
+
+      <div class="container">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-9 text-center text-xl-start">
+            <h3>Join Us in Making a Difference!</h3>
+            <p>We believe that together we can create a sustainable future. Take action today by donating your unused
+              clothing or partnering with us to promote eco-friendly practices in your community. Every small step
+              counts!</p>
+          </div>
+          <div class="col-xl-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#">Donate Now</a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <!-- /Call To Action Section -->
+
+    <!-- Works Section -->
+    <section id="works" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up" style="max-width: 700px;">
+        <h2>How It Works </h2>
+      </div>
+      <!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative shadow" style="height: 250px;">
+              <div class="icon">
+                <i class="bi bi-send"></i>
+              </div>
+              <a href="service-details.html" class="stretched-link">
+                <h3>Submit Your Items</h3>
+              </a>
+              <p>Enter details about the clothes you'd like to donate, recycle, or dispose of - including the type,
+                condition, and quantity.</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative shadow" style="height: 250px;">
+              <div class="icon">
+                <i class="bi bi-option"></i>
+              </div>
+              <a href="service-details.html" class="stretched-link">
+                <h3>Choose an Option</h3>
+              </a>
+              <p>Send gently used items to charity. Recycle clothes that can't be donated. Dispose of items that are
+                beyond use in an eco-friendly way.
+              </p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative shadow" style="height: 250px;">
+              <div class="icon">
+                <i class="bi bi-truck"></i>
+              </div>
+              <a href="service-details.html" class="stretched-link">
+                <h3>Select Pickup or Drop-off</h3>
+              </a>
+              <p>You can either schedule a free pickup at your convenience or find a nearby drop-off point.</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative shadow" style="height: 250px;">
+              <div class="icon">
+                <i class="bi bi-person"></i>
+              </div>
+              <a href="service-details.html" class="stretched-link">
+                <h3>Make an Impact</h3>
+              </a>
+              <p>Track the environmental impact of your donations and recycled items through your account dashboard.</p>
+            </div>
+          </div>
+          <!-- End Service Item -->
+
+
+        </div>
+
+      </div>
+
+    </section>
+    <!-- /Works Section -->
+
+    <section id="faq" class="section pt-0">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up" style="max-width: 700px;">
+        <h2>Frequently Asked Questions (FAQ) </h2>
+      </div>
+      <!-- End Section Title -->
+
+      <div class="container" style="max-width: 1000px;">
+
+        <div class="row gy-4">
+
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button text-success" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  What kind of clothing can I submit?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  You can submit any type of clothing, regardless of its condition. Gently used clothes are
+                  donated, and worn-out clothes are recycled or disposed of.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button text-success collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  How does the donation process work?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Once you submit your items, we ensure that gently used clothes are sent to charitable organizations
+                  that distribute them to those in need.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button text-success collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  How do I schedule a pickup?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  After submitting your apparel, you will be prompted to choose a pickup time or find a drop-off point
+                  near you.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button text-success collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Can I donate accessories or shoes?
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Yes, we accept shoes, belts, bags, and other accessories in addition to clothing.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container" style="max-width: 700px;">
+      <h3 class="sitename">MVP</h3>
+      <p>Your source for making a positive impact through sustainable
+        apparel. Join us in
+        donating, recycling, or
+        responsibly disposing of clothing to help those in need and protect the environment.</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">MVP</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          Designed by <a href="https://www.linkedin.com/in/keerti-vishwkarma-8ba754243/" target="_blank">Keerti Vishwkarma</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/static/assets/vendor/aos/aos.js"></script>
+  <script src="/static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/static/assets/js/main.js"></script>
+
+</body>
+
+</html>

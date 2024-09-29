@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MVP-Register</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/favicon.png" rel="icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/static/assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header d-flex align-items-center bg-dark fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="/static/assets/img/logo.png" alt="">
+            </a>
+
+           <nav id="navmenu" class="navmenu">
+		        <ul>
+		          <li><a href="/" class="active">Home</a></li>
+		          <li><a href="/about">About Us</a></li>
+		          <li><a href="/contact">Contact</a></li>
+		           <!-- Check if the currentUser is logged in -->
+			        <li th:if="${currentUser == null}">
+			            <a href="/login">Login</a>
+			        </li>
+			
+			        <!-- Show logged-in user's name and logout button -->
+			        <li th:if="${currentUser != null}">
+			            <a href="/logout">Logout</a>
+			        </li>
+			
+			        <!-- User profile icon -->
+			        <li th:if="${currentUser != null}"><a href="/apparel/profile"><i class="bi bi-person border me-2 p-2 rounded-circle"></i> <span th:text="${currentUser.username}"></span></a></li>
+			    </ul>
+		        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+		      </nav>
+
+        </div>
+    </header>
+
+	 <main class="main mt-5">
+    <section class="apparel section">
+        <div class="container">
+            <div class="row gy-4 d-flex align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <h2 class="text-center">Edit Apparel</h2>
+
+                    <form th:action="@{/apparel/edit/{id}(id=${apparel.id})}" th:object="${apparel}" method="post" enctype="multipart/form-data">
+					    <div class="mb-3">
+					        <label for="image" class="form-label">Apparel Image</label>
+					        <input type="file" name="image" class="form-control">
+					    </div>
+					    
+					    <div class="mb-3">
+					        <label for="name" class="form-label">Name</label>
+					        <input type="text" name="name" th:value="${apparel.name}" class="form-control" placeholder="T-Shirt" required>
+					    </div>
+					
+					    <div class="mb-3">
+					        <label for="description" class="form-label">Description</label>
+					        <textarea name="description" class="form-control" placeholder="Description" required th:text="${apparel.description}"></textarea>
+					    </div>
+					
+					    <div class="mb-3">
+					        <label for="category" class="form-label">Category</label>
+					        <select name="category" class="form-select" required>
+					            <option value="">--Select Category--</option>
+					            <option value="Disposal" th:selected="${apparel.category == 'Disposal'}">Disposal</option>
+					            <option value="Donation" th:selected="${apparel.category == 'Donation'}">Donation</option>
+					            <option value="Recycling" th:selected="${apparel.category == 'Recycling'}">Recycling</option>
+					        </select>
+					    </div>
+					
+					    <div class="mb-3">
+					        <label for="quantity" class="form-label">Quantity</label>
+					        <input type="number" name="quantity" th:value="${apparel.quantity}" class="form-control" required>
+					    </div>
+					
+					    <div class="mb-3">
+					        <label for="condition" class="form-label">Condition</label>
+					        <select name="condition" class="form-select" required>
+					            <option value="">--Select Condition--</option>
+					            <option value="Worn out" th:selected="${apparel.condition == 'Worn out'}">Worn out</option>
+					            <option value="Unused" th:selected="${apparel.condition == 'Unused'}">Unused</option>
+					            <option value="Slightly Used" th:selected="${apparel.condition == 'Slightly Used'}">Slightly Used</option>
+					        </select>
+					    </div>
+					
+					    <div class="mb-3">
+					        <label for="status" class="form-label">Status</label>
+					        <select name="status" class="form-select" required>
+					            <option value="">--Select Status--</option>
+					            <option value="Pending" th:selected="${apparel.status == 'Pending'}">Pending</option>
+					            <option value="Approved" th:selected="${apparel.status == 'Approved'}">Approved</option>
+					            <option value="Rejected" th:selected="${apparel.status == 'Rejected'}">Rejected</option>
+					        </select>
+					    </div>
+					
+					    <div class="text-center">
+					        <button type="submit" class="about-btn p-2 w-100">Update Apparel</button>
+					    </div>
+					</form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container" style="max-width: 700px;">
+      <h3 class="sitename">MVP</h3>
+      <p>Your source for making a positive impact through sustainable
+        apparel. Join us in
+        donating, recycling, or
+        responsibly disposing of clothing to help those in need and protect the environment.</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">MVP</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          Designed by <a href="https://www.linkedin.com/in/keerti-vishwkarma-8ba754243/" target="_blank">Keerti Vishwkarma</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/static/assets/vendor/aos/aos.js"></script>
+  <script src="/static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/static/assets/js/main.js"></script>
+
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Apparel</title>
+</head>
+<body>
+    <h1>Edit Apparel</h1>
+    <form th:action="@{/apparel/edit/{id}(id=${apparel.id})}" th:object="${apparel}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        
+        <label for="description">Description:</label>
+        <input type="text" id="description" th:field="*{description}" required />
+        
+        <label for="category">Category:</label>
+        <select id="category" th:field="*{category}">
+            <option value="Disposal">Disposal</option>
+            <option value="Donation">Donation</option>
+            <option value="Recycling">Recycling</option>
+        </select>
+
+        <label for="condition">Condition:</label>
+        <select id="condition" th:field="*{condition}">
+            <option value="Worn out">Worn out</option>
+            <option value="Unused">Unused</option>
+            <option value="Slightly Used">Slightly Used</option>
+        </select>
+
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{status}">
+            <option value="Pending">Pending</option>
+            <option value="Processed">Processed</option>
+        </select>
+
+        <button type="submit">Update Apparel</button>
+    </form>
+</body>
+</html>
