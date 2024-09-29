@@ -100,7 +100,7 @@ To set up and run this project, ensure you have the following installed:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/apparel-mvp-platform.git
+   git clone https://github.com/keerti1924/MVP-Minimum-Viable-Product-Platform.git
    ```
 2. **Create a MySQL Database**
 - Create a new database named `mvp_platform` in your MySQL instance.
