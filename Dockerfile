@@ -5,8 +5,8 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the Maven wrapper files and the pom.xml
-COPY ./mvnw ./mvnw
-COPY ./mvnw.cmd ./mvnw.cmd
+COPY ./mvn ./mvn
+COPY ./mvn.cmd ./mvn.cmd
 COPY ./.mvn ./.mvn
 COPY ./pom.xml ./pom.xml
 
