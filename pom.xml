@@ -8,10 +8,10 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jobhive</groupId>
-	<artifactId>JobHiveSpring</artifactId>
+	<groupId>com.mvp</groupId>
+	<artifactId>MVP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>JobHiveSpring</name>
+	<name>MVP</name>
 	<description>College project for Spring Boot</description>
 	<url/>
 	<licenses>
